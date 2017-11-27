@@ -1,3 +1,15 @@
+ffmpeg -i your_target.mp4 -vf drawtext="ariblk.ttf: text='Ăn cà rem': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5: boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2" -codec:a copy output.mp4
+
+
+
+ffmpeg -framerate 24 -i assets/step_1.png output.mp4
+
+
 ffmpeg -loop 1 -i assets/step_1.png -c:v libx264 -t 30 -pix_fmt yuv420p out.mp4
+ffmpeg -y -r 1/5 -f concat -safe 0 -i "image.txt" -c:v libx264 -vf "fps=25,format=yuv420p" "out.mp4"
+
 
 ffmpeg -framerate 1/5 -i assets/step_1.png -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+
+
+ffmpeg -r 50 -f image2 -s 1920x1080 -i assets/step_%01d.png -vcodec libx264 -crf 25  -pix_fmt yuv420p test.mp4
